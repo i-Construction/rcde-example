@@ -14,6 +14,12 @@ function SelectValue({ ...props }: React.ComponentProps<typeof SelectPrimitive.V
   return <SelectPrimitive.Value data-slot="select-value" {...props} />;
 }
 
+// `SelectLabel` は Radix が Group の Context を default なしで読むため、
+// `SelectGroup` の外に置くと選択肢を開いた瞬間に実行時エラーになる。
+function SelectGroup({ ...props }: React.ComponentProps<typeof SelectPrimitive.Group>) {
+  return <SelectPrimitive.Group data-slot="select-group" {...props} />;
+}
+
 function SelectTrigger({
   className,
   size = "default",
@@ -142,6 +148,7 @@ function SelectScrollDownButton({
 export {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectLabel,
   SelectTrigger,

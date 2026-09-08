@@ -21,7 +21,9 @@ import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -356,15 +358,14 @@ export function UploadModal({
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {/* SelectLabel は Radix の SelectGroup 配下でしか使えず、
-                    このプロジェクトの select.tsx は SelectGroup を export していないため
-                    見出しは素の div で描画する。 */}
-                <div className="text-muted-foreground px-2 py-1.5 text-xs">CoordinateSystem</div>
-                {COORDINATE_SYSTEM_OPTIONS.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}（{option.value}）
-                  </SelectItem>
-                ))}
+                <SelectGroup>
+                  <SelectLabel>CoordinateSystem</SelectLabel>
+                  {COORDINATE_SYSTEM_OPTIONS.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}（{option.value}）
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
               </SelectContent>
             </Select>
             <p className="text-muted-foreground text-xs">

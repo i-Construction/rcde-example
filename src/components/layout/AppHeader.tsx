@@ -10,6 +10,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectGroup,
   SelectLabel,
   SelectTrigger,
   SelectValue,
@@ -164,12 +165,14 @@ export function AppHeader({
                 <SelectValue placeholder="現場を選択" />
               </SelectTrigger>
               <SelectContent>
-                <SelectLabel>現場</SelectLabel>
-                {constructions.map((construction) => (
-                  <SelectItem key={construction.id} value={String(construction.id)}>
-                    {construction.name}
-                  </SelectItem>
-                ))}
+                <SelectGroup>
+                  <SelectLabel>現場</SelectLabel>
+                  {constructions.map((construction) => (
+                    <SelectItem key={construction.id} value={String(construction.id)}>
+                      {construction.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
               </SelectContent>
             </Select>
             {constructionsLoading && <Loader2 className="size-4 animate-spin text-white/80" />}
@@ -189,12 +192,14 @@ export function AppHeader({
                 <SelectValue placeholder="契約を選択" />
               </SelectTrigger>
               <SelectContent>
-                <SelectLabel>契約</SelectLabel>
-                {contracts.map((contract) => (
-                  <SelectItem key={contract.id} value={String(contract.id)}>
-                    {contract.name}
-                  </SelectItem>
-                ))}
+                <SelectGroup>
+                  <SelectLabel>契約</SelectLabel>
+                  {contracts.map((contract) => (
+                    <SelectItem key={contract.id} value={String(contract.id)}>
+                      {contract.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
               </SelectContent>
             </Select>
             {contractsLoading && <Loader2 className="size-4 animate-spin text-white/80" />}
