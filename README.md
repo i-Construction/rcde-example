@@ -17,20 +17,20 @@ SDK が export しているコンポーネント・フック・クラス・ユ�
 
 ## できること
 
-| 分類               | 内容                                                                                                                                                |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 点群ビューア       | `Viewer` を `contractFileIds` 以外の全 prop 指定で表示。地図 / ライト / グリッド / ギズモ / 基準点軸の各 R3F オプションをツールバーから切り替え     |
-| ファイル一覧       | `useContractFileActions` の全メンバー（表示切替・フォーカス・ダウンロード・ステータス判定）と、`useContractFiles` の `load` / `updateFiles` の違い |
-| ステータス表示     | `deriveFileStatus` / `isPclodCompleted` / `isFileStatusActive` / `isBatchProcessingStatus` を使い、アップロード状態と PCLOD 変換状態を区別して表示  |
-| アップロード       | `uploadContractFile`（単発）と `uploadContractFileMultipart`（分割＋進捗）を選んで実行。アップロード中のファイルは一覧に仮の行として並ぶ            |
-| 距離計測           | `MeasurementHandler` で点を打ち、`MeasurementView` で確定線を常時表示                                                                               |
-| 基準点             | `useReferencePoint` の `point` / `change` / `focusFileById`。`ReferencePointAxis` を自前で描画して長さ・太さを変更                                  |
-| 表示・Transform    | `ViewerBridge` の `setAppearance` / `setTransform` / `reset` / `addListener`。`window.postMessage` 経由で外部から制御できることを確認できる          |
-| メモリ監視         | `memoryMonitoring` の全オプション。サンプリング間隔・閾値・判定ソースを変更しながら、サンプル / アラート / レベル変化の 3 コールバックを観察         |
-| イベント           | `onObjectClick` / `onObjectHover` / レガシーの `onContractFileClick` / `ViewerBridge.addListener` を 1 つのログに時系列で流す                       |
-| REST API           | `RCDEClient` の全 12 メソッドを引数を編集して実行し、レスポンス JSON をそのまま確認                                                                 |
-| 独自 R3F レイヤー  | `Viewer` の `children` / `positionOffsetComponent` / `auxiliaryContent` に自前の要素を差し込む。`ContractFileView` を単体で使ったコピー描画も含む   |
-| 最小構成デモ       | `RCDE` コンポーネントを 1 つ置くだけの構成をダイアログで別途表示。プロバイダを自分で並べる版との差が比較できる                                       |
+| 分類              | 内容                                                                                                                                                                 |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 点群ビューア      | `Viewer` を `contractFileIds` 以外の全 prop 指定で表示。地図 / ライト / グリッド / ギズモ / 基準点軸の各 R3F オプションをツールバーから切り替え                      |
+| ファイル一覧      | `useContractFileActions` の全メンバー（表示切替・フォーカス・ダウンロード・ステータス判定）と、`useContractFiles` の `load` / `updateFiles` の違い                   |
+| ステータス表示    | `deriveFileStatus` / `isPclodCompleted` / `isFileStatusActive` / `isBatchProcessingStatus` を使い、アップロード状態と PCLOD 変換状態を区別して表示                   |
+| アップロード      | `uploadContractFile`（単発）と `uploadContractFileMultipart`（分割＋進捗）を選んで実行。アップロード中のファイルは一覧に仮の行として並ぶ                             |
+| 距離計測          | `MeasurementHandler` で点を打ち、`MeasurementView` で確定線を常時表示                                                                                                |
+| 基準点            | `useReferencePoint` の `point` / `change` / `focusFileById`。`ReferencePointAxis` を自前で描画して長さ・太さを変更                                                   |
+| 表示・Transform   | `ViewerBridge` の `setAppearance` / `setTransform` / `reset` / `addListener`。`window.postMessage` 経由で外部から制御できることを確認できる                          |
+| メモリ監視        | `memoryMonitoring` の全オプション。サンプリング間隔と estimate / jsHeap / page それぞれの閾値を変更しながら、サンプル / アラート / レベル変化の 3 コールバックを観察 |
+| イベント          | `onObjectClick` / `onObjectHover` / レガシーの `onContractFileClick` / `ViewerBridge.addListener` を 1 つのログに時系列で流す                                        |
+| REST API          | `RCDEClient` の全 12 メソッドを引数を編集して実行し、レスポンス JSON をそのまま確認                                                                                  |
+| 独自 R3F レイヤー | `Viewer` の `children` / `positionOffsetComponent` / `auxiliaryContent` に自前の要素を差し込む。`ContractFileView` を単体で使ったコピー描画も含む                    |
+| 最小構成デモ      | `RCDE` コンポーネントを 1 つ置くだけの構成をダイアログで別途表示。プロバイダを自分で並べる版との差が比較できる                                                       |
 
 ## セットアップ
 
@@ -46,14 +46,14 @@ cp .env.example .env
 
 `.env` を編集します。
 
-| 変数                                  | 公開範囲   | 説明                                                                     |
-| ------------------------------------- | ---------- | ------------------------------------------------------------------------ |
-| `RCDE_CLIENT_ID`                      | サーバーのみ | 必須。RCDE で発行したクライアント ID                                     |
-| `RCDE_CLIENT_SECRET`                  | サーバーのみ | 必須。同シークレット                                                     |
-| `RCDE_API_BASE_URL`                   | サーバーのみ | RCDE API の URL。既定 `https://api.rcde.jp`                              |
-| `NEXT_PUBLIC_RCDE_PROXY_BASE_URL`     | ブラウザ   | SDK の `app.baseUrl` に渡す値。既定 `/api/rcde`（後述のプロキシを指す）  |
-| `NEXT_PUBLIC_DEFAULT_CONSTRUCTION_ID` | ブラウザ   | 任意。起動直後に開く現場 ID。未指定ならヘッダーのセレクタで選ぶ          |
-| `NEXT_PUBLIC_DEFAULT_CONTRACT_ID`     | ブラウザ   | 任意。同じく契約 ID                                                      |
+| 変数                                  | 公開範囲     | 説明                                                                    |
+| ------------------------------------- | ------------ | ----------------------------------------------------------------------- |
+| `RCDE_CLIENT_ID`                      | サーバーのみ | 必須。RCDE で発行したクライアント ID                                    |
+| `RCDE_CLIENT_SECRET`                  | サーバーのみ | 必須。同シークレット                                                    |
+| `RCDE_API_BASE_URL`                   | サーバーのみ | RCDE API の URL。既定 `https://api.rcde.jp`                             |
+| `NEXT_PUBLIC_RCDE_PROXY_BASE_URL`     | ブラウザ     | SDK の `app.baseUrl` に渡す値。既定 `/api/rcde`（後述のプロキシを指す） |
+| `NEXT_PUBLIC_DEFAULT_CONSTRUCTION_ID` | ブラウザ     | 任意。起動直後に開く現場 ID。未指定ならヘッダーのセレクタで選ぶ         |
+| `NEXT_PUBLIC_DEFAULT_CONTRACT_ID`     | ブラウザ     | 任意。同じく契約 ID                                                     |
 
 シークレットは `NEXT_PUBLIC_` を付けない変数に置いてください。付けるとバンドルに埋め込まれてブラウザから読めてしまいます。
 
@@ -107,12 +107,12 @@ yarn dev
    │<─────────────────────────────┤<─────────────────────────────┤
 ```
 
-| ファイル                                                              | 役割                                                                                        |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| [src/lib/rcde-2legged.ts](src/lib/rcde-2legged.ts)                     | トークン取得とプロセス内キャッシュ。期限が近いときだけ再取得し、同時呼び出しは 1 本にまとめる |
-| [src/app/api/auth/token/route.ts](src/app/api/auth/token/route.ts)     | ブラウザにアクセストークンだけを返す。シークレットは返さない                                 |
-| [src/app/api/rcde/[...path]/route.ts](src/app/api/rcde/[...path]/route.ts) | RCDE API への転送プロキシ。`Authorization` をそのまま中継する                            |
-| [src/hooks/useRcdeSession.ts](src/hooks/useRcdeSession.ts)              | トークンを取得して `RCDEAppConfig` を組み立てる。`app` の参照が変わると SDK が再初期化するため `useMemo` で固定 |
+| ファイル                                                                   | 役割                                                                                                            |
+| -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [src/lib/rcde-2legged.ts](src/lib/rcde-2legged.ts)                         | トークン取得とプロセス内キャッシュ。期限が近いときだけ再取得し、同時呼び出しは 1 本にまとめる                   |
+| [src/app/api/auth/token/route.ts](src/app/api/auth/token/route.ts)         | ブラウザにアクセストークンだけを返す。シークレットは返さない                                                    |
+| [src/app/api/rcde/[...path]/route.ts](src/app/api/rcde/[...path]/route.ts) | RCDE API への転送プロキシ。`Authorization` をそのまま中継する                                                   |
+| [src/hooks/useRcdeSession.ts](src/hooks/useRcdeSession.ts)                 | トークンを取得して `RCDEAppConfig` を組み立てる。`app` の参照が変わると SDK が再初期化するため `useMemo` で固定 |
 
 `RCDEClient` は `baseUrl` の後ろに `/ext/v2/authenticated/...` を組み立てるので、`baseUrl` を `/api/rcde` にすればパスがそのままプロキシへ乗ります。
 
@@ -199,14 +199,14 @@ docs/FEATURE_COVERAGE.md              公開 API と使用箇所の対応表
 
 ## 開発コマンド
 
-| コマンド            | 内容                                    |
-| ------------------- | --------------------------------------- |
-| `yarn dev`          | 開発サーバー（webpack）                 |
-| `yarn build`        | 本番ビルド（webpack）                   |
-| `yarn start`        | ビルド結果の起動                        |
-| `yarn lint`         | ESLint（フラットコンフィグ）            |
-| `yarn format`       | Prettier で整形                         |
-| `yarn format:check` | 整形済みかを確認                        |
+| コマンド            | 内容                         |
+| ------------------- | ---------------------------- |
+| `yarn dev`          | 開発サーバー（webpack）      |
+| `yarn build`        | 本番ビルド（webpack）        |
+| `yarn start`        | ビルド結果の起動             |
+| `yarn lint`         | ESLint（フラットコンフィグ） |
+| `yarn format`       | Prettier で整形              |
+| `yarn format:check` | 整形済みかを確認             |
 
 `dev` と `build` に `--webpack` を付けているのは、SDK の `src` 直参照 alias と React インスタンスの一本化を webpack の `resolve.alias` で行っているためです。Turbopack ではこの設定が効きません。
 
