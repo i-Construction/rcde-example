@@ -137,20 +137,13 @@ AppShell                      … 認証状態で画面を切り替える
 
 ## SDK の参照方法
 
-現在は GitHub の `develop` ブランチを直接参照しています。
+npm の `@i-con/frontend-sdk@0.1.0` を使います。
 
 ```json
-"@i-con/frontend-sdk": "github:i-Construction/rcde-frontend-sdk#develop"
+"@i-con/frontend-sdk": "0.1.0"
 ```
 
-git 依存では `prepublishOnly` が走らず `dist` が含まれないため、[next.config.mjs](next.config.mjs) で `src` を直接指す alias を張り、`transpilePackages` に加えてビルド対象にしています。
-
-SDK が npm へ公開されたら、次のように差し替えられます。
-
-1. `package.json` の依存をバージョン指定（例 `"@i-con/frontend-sdk": "^0.1.0"`）に変更する
-2. `next.config.mjs` から `@i-con/frontend-sdk` の alias と `transpilePackages` のエントリを削除する（`dist` が入るため不要）
-3. SDK が直接 import している `@mui/material` / `@emotion/react` / `@emotion/styled` / `chroma-js` / `js-quadtree` / `pngjs` は SDK 自身の依存として解決されるので、本プロジェクトの依存から外せる
-4. [src/types/pngjs-browser.d.ts](src/types/pngjs-browser.d.ts) も不要になる（`pngjs/browser` の型を補うためのファイル）
+SDK の `dist` が入るため、ソース直参照の alias や `transpilePackages` への追加は不要です。`@i-con/pcd-viewer` は `PointCloudMeta` 型のために直接依存しています。
 
 ## ディレクトリ構成
 
@@ -189,11 +182,10 @@ src/
 │   │   └── ApiPlaygroundPanel.tsx   RCDEClient 全メソッド
 │   └── ui/                          shadcn/ui コンポーネント
 ├── hooks/useRcdeSession.ts
-├── lib/
-│   ├── env.ts                       NEXT_PUBLIC_* の読み出し
-│   ├── format.ts                    バイト数・座標の整形
-│   └── rcde-2legged.ts              サーバー専用の認証処理
-└── types/pngjs-browser.d.ts
+└── lib/
+    ├── env.ts                       NEXT_PUBLIC_* の読み出し
+    ├── format.ts                    バイト数・座標の整形
+    └── rcde-2legged.ts              サーバー専用の認証処理
 docs/FEATURE_COVERAGE.md              公開 API と使用箇所の対応表
 ```
 
@@ -208,7 +200,7 @@ docs/FEATURE_COVERAGE.md              公開 API と使用箇所の対応表
 | `yarn format`       | Prettier で整形              |
 | `yarn format:check` | 整形済みかを確認             |
 
-`dev` と `build` に `--webpack` を付けているのは、SDK の `src` 直参照 alias と React インスタンスの一本化を webpack の `resolve.alias` で行っているためです。Turbopack ではこの設定が効きません。
+`dev` と `build` に `--webpack` を付けているのは、React / R3F インスタンスの一本化を webpack の `resolve.alias` で行っているためです。Turbopack ではこの設定が効きません。
 
 ## つまずきやすいポイント
 

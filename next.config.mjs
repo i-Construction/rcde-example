@@ -4,24 +4,13 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const localNodeModules = path.resolve(__dirname, "node_modules");
 
-// GitHub 依存でインストールされた SDK には dist が含まれない（prepublishOnly は
-// git dependency では実行されない）ため、src を直接参照して transpile する。
-// npm 公開版に切り替えたら、この alias と transpilePackages の SDK 分は不要になる。
-const sdkSrc = path.join(localNodeModules, "@i-con/frontend-sdk/src");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: [
-    "@i-con/frontend-sdk",
-    "@i-con/pcd-viewer",
-    "@react-three/fiber",
-    "@react-three/drei",
-  ],
+  transpilePackages: ["@i-con/pcd-viewer", "@react-three/fiber", "@react-three/drei"],
   serverExternalPackages: ["three"],
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@i-con/frontend-sdk": sdkSrc,
       // pcd-viewer も package.json の main が src を指すため transpile 対象。
       // サーバー側ビルドでも同じ実体を使わせる。
       "@i-con/pcd-viewer": path.join(localNodeModules, "@i-con/pcd-viewer"),

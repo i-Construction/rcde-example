@@ -25,12 +25,6 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@i-con/frontend-sdk": [
-        "./node_modules/@i-con/frontend-sdk/src/index.ts"
-      ],
-      "@i-con/frontend-sdk/*": [
-        "./node_modules/@i-con/frontend-sdk/src/*"
       ]
     }
   },

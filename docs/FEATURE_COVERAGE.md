@@ -1,16 +1,14 @@
 # 公開 API カバレッジ
 
-`node_modules/@i-con/frontend-sdk/src/index.ts` から export されている全シンボルを列挙し、本サンプル内での使用箇所を対応させた表です。網羅の証跡として使ってください。
+`node_modules/@i-con/frontend-sdk` から export されている全シンボルを列挙し、本サンプル内での使用箇所を対応させた表です。網羅の証跡として使ってください。
 
-- 調査対象: `github:i-Construction/rcde-frontend-sdk#develop`（`package.json` の `version` = **0.0.3**）
+- 調査対象: `@i-con/frontend-sdk@0.1.0`
 - 公開シンボル総数: **57**
   - コンポーネント 6 / プロバイダ 3 / フック 4 / クラス 1 / オブジェクト 1 / 関数 4 / 定数 2 / 型 36
 - 値（コンポーネント・プロバイダ・フック・クラス・オブジェクト・関数・定数）**21 件はすべて使用**しています。
 - 型は 36 件のうち 35 件を型注釈・型引数として使用しています。未使用の 1 件は末尾の [未使用シンボル](#未使用シンボル) を参照してください。
 
 `index.ts` は `export * from "./components/RCDE"` と `export * from "./bridge/viewerBridge"` の 2 つでワイルドカード再エクスポートを行っているため、その 2 ファイルが export しているシンボルも公開 API として数えています。
-
-> **注記**: 参照先ブランチは一時的に `develop` を指定しています。SDK が npm へ公開された後はバージョン指定へ切り替える予定で、そのときに公開シンボルが増減したらこの表も更新してください。
 
 ## コンポーネント
 
@@ -122,7 +120,7 @@
 
 ## `ViewerProps` の全プロパティ
 
-`node_modules/@i-con/frontend-sdk/src/components/Viewer.tsx` の `ViewerProps` の全プロパティと、本サンプル（[src/components/viewer/ViewerCanvas.tsx](../src/components/viewer/ViewerCanvas.tsx)）での扱いです。`RCDEProps` は `Parameters<typeof RCDE>[0]` = `ViewerProps` と同一なので、[src/components/SimpleRcdeDialog.tsx](../src/components/SimpleRcdeDialog.tsx) にも同じ表が当てはまります。
+`@i-con/frontend-sdk` の `ViewerProps` の全プロパティと、本サンプル（[src/components/viewer/ViewerCanvas.tsx](../src/components/viewer/ViewerCanvas.tsx)）での扱いです。`RCDEProps` は `Parameters<typeof RCDE>[0]` = `ViewerProps` と同一なので、[src/components/SimpleRcdeDialog.tsx](../src/components/SimpleRcdeDialog.tsx) にも同じ表が当てはまります。
 
 | プロパティ                | 型                                                                           | 本サンプルでの指定値・扱い                                                                                                                                                                                                                           |
 | ------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
