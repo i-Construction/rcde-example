@@ -433,10 +433,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.3.tgz#c2b9d2e374ee62c586d3adbea87199b1d7a7a6ba"
   integrity sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==
 
-"@i-con/frontend-sdk@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@i-con/frontend-sdk/-/frontend-sdk-0.1.0.tgz#19eea53d611820ca48d9a184ac341917cf4eb3a1"
-  integrity sha512-10tppW5OoIm4gQrmLCI3t11f6MxxK3XfEl4Hni+tQlh01kuTzsizMjTheXn4lCcHK370pviEendPf4WZ2EU0MA==
+"@i-con/frontend-sdk@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@i-con/frontend-sdk/-/frontend-sdk-0.1.2.tgz#5452eeba43d15bfbd531e889e1ab2c71c50eea9e"
+  integrity sha512-PzGLK9dv19m4tjsA86gZVJbo2NvrCSDVVFwXagrJFbKqspU7c+YyF9cKpCJcct26k665ITI3ZVYr5pYTBG5nug==
   dependencies:
     "@emotion/react" "^11.14.0"
     "@emotion/styled" "^11.14.0"

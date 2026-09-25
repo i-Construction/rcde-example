@@ -50,8 +50,7 @@ const WRITE_ACTION_LABELS: Record<WriteAction, string> = {
  * 書き込み系は SDK の型が任意にしている項目でも R-CDE 側が必須にしているものがあり、
  * 省略すると HTTP 400 になる。このパネルは必須項目すべての入力欄を持たせてある
  * （`createConstruction` は 6 項目、`createContract` は 5 項目）。
- * `createContract` は 2legged 専用で、3legged のクライアントで呼ぶと SDK が送信前に throw する。
- * このサンプルは `useRcdeSession` で 2legged 固定なので、その経路には入らない。
+ * SDK は 2-legged のみ対応。このサンプルも `useRcdeSession` で 2legged 固定。
  *
  * `uploadContractFile` / `uploadContractFileMultipart` はこのパネルでは扱わない。
  * ファイル選択とアップロード進捗の UI が必要なため、別途アップロードモーダル側で実装している。
