@@ -5,9 +5,8 @@ import type { AuthType, RCDEAppConfig } from "@i-con/frontend-sdk";
 import { RCDE_PROXY_BASE_URL } from "@/lib/env";
 
 /**
- * このサンプルの認証方式。`AuthType` は `"2legged" | "3legged"` で、
- * `RCDEClient` が組み立てる API パスの接頭辞（`/ext/v2/authenticated` か
- * `/ext/v2/userAuthenticated`）を決める。
+ * このサンプルの認証方式。SDK は 2-legged のみ対応で、
+ * `RCDEClient` は `/ext/v2/authenticated` を接頭辞にする。
  */
 const AUTH_TYPE: AuthType = "2legged";
 

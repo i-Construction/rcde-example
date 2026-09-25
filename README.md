@@ -137,10 +137,10 @@ AppShell                      … 認証状態で画面を切り替える
 
 ## SDK の参照方法
 
-npm の `@i-con/frontend-sdk@0.1.0` を使います。
+npm の `@i-con/frontend-sdk@0.1.2` を使います。
 
 ```json
-"@i-con/frontend-sdk": "0.1.0"
+"@i-con/frontend-sdk": "0.1.2"
 ```
 
 SDK の `dist` が入るため、ソース直参照の alias や `transpilePackages` への追加は不要です。`@i-con/pcd-viewer` は `PointCloudMeta` 型のために直接依存しています。
