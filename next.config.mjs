@@ -6,16 +6,9 @@ const localNodeModules = path.resolve(__dirname, "node_modules");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@i-con/pcd-viewer", "@react-three/fiber", "@react-three/drei"],
+  transpilePackages: ["@react-three/fiber", "@react-three/drei"],
   serverExternalPackages: ["three"],
   webpack: (config, { isServer }) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      // pcd-viewer も package.json の main が src を指すため transpile 対象。
-      // サーバー側ビルドでも同じ実体を使わせる。
-      "@i-con/pcd-viewer": path.join(localNodeModules, "@i-con/pcd-viewer"),
-    };
-
     if (isServer) {
       return config;
     }
