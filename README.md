@@ -137,13 +137,15 @@ AppShell                      … 認証状態で画面を切り替える
 
 ## SDK の参照方法
 
-npm の `@i-con/frontend-sdk@0.1.2` を使います。
+npm の `@i-con/frontend-sdk@0.1.4` を使います。
 
 ```json
-"@i-con/frontend-sdk": "0.1.2"
+"@i-con/frontend-sdk": "0.1.4"
 ```
 
-SDK の `dist` が入るため、ソース直参照の alias や `transpilePackages` への追加は不要です。`@i-con/pcd-viewer` は `PointCloudMeta` 型のために直接依存しています。
+SDK の `dist` が入るため、ソース直参照の alias や `transpilePackages` への追加は不要です。
+
+`@i-con/pcd-viewer` は `PointCloudMeta` 型のために直接依存しています。実行時のコードは 0.1.4 から SDK の `dist` へ取り込まれているので、`transpilePackages` や alias は要りません。ただし pcd-viewer の `types` は素の `src/index.ts` を指しているため、型解決の過程で `pngjs/browser` の宣言が必要になります（[src/types/pngjs-browser.d.ts](src/types/pngjs-browser.d.ts)）。
 
 ## ディレクトリ構成
 
