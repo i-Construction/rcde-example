@@ -2,6 +2,7 @@
   "name": "rcde-frontend-sdk-example",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "@i-con/frontend-sdk の公開API全機能を1画面で網羅的にデモするサンプルアプリ",
   "scripts": {
     "dev": "next dev --webpack",
