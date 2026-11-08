@@ -8,9 +8,9 @@ import {
   useContractFiles,
   useReferencePoint,
   type ContractFileProps,
+  type PointCloudMeta,
   type ViewerFileMemoryEstimate,
 } from "@i-con/frontend-sdk";
-import type { PointCloudMeta } from "@i-con/pcd-viewer";
 import { toast } from "sonner";
 import { useWorkspace } from "@/components/workspace/WorkspaceProvider";
 import { formatBytes, formatNumber } from "@/lib/format";
@@ -54,7 +54,7 @@ export function CustomContractFileLayer() {
       .getContractFileMetadata({ ...project, contractFileId: customFileLayerFileId })
       .then((data) => {
         if (cancelled) return;
-        // RCDE API のレスポンス型と pcd-viewer の PointCloudMeta は
+        // RCDE API のレスポンス型と SDK の PointCloudMeta は
         // 別々に定義されているため、SDK 内部と同じくキャストして受け渡す。
         setMetaEntry({
           fileId: customFileLayerFileId,
