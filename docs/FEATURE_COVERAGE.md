@@ -2,11 +2,12 @@
 
 `node_modules/@i-con/frontend-sdk` から export されている全シンボルを列挙し、本サンプル内での使用箇所を対応させた表です。網羅の証跡として使ってください。
 
-- 調査対象: `@i-con/frontend-sdk@0.1.2`
-- 公開シンボル総数: **57**
-  - コンポーネント 6 / プロバイダ 3 / フック 4 / クラス 1 / オブジェクト 1 / 関数 4 / 定数 2 / 型 36
-- 値（コンポーネント・プロバイダ・フック・クラス・オブジェクト・関数・定数）**21 件はすべて使用**しています。
-- 型は 36 件のうち 35 件を型注釈・型引数として使用しています。未使用の 1 件は末尾の [未使用シンボル](#未使用シンボル) を参照してください。
+- 調査対象: `@i-con/frontend-sdk@0.1.5`
+- 公開シンボル総数: **63**
+  - コンポーネント 6 / プロバイダ 3 / フック 4 / クラス 1 / オブジェクト 1 / 関数 4 / 定数 3 / 型 41
+- 値（コンポーネント・プロバイダ・フック・クラス・オブジェクト・関数・定数）は 22 件のうち 21 件を使用しています。
+- 型は 41 件のうち 37 件を型注釈・型引数として使用しています。
+- 未使用の 5 件は末尾の [未使用シンボル](#未使用シンボル) を参照してください。
 
 `index.ts` は `export * from "./components/RCDE"` と `export * from "./bridge/viewerBridge"` の 2 つでワイルドカード再エクスポートを行っているため、その 2 ファイルが export しているシンボルも公開 API として数えています。
 
@@ -69,6 +70,7 @@
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `CoordinateSystem`        | [AppearancePanel](../src/components/inspector/AppearancePanel.tsx)<br>[UploadModal](../src/components/sidebar/UploadModal.tsx)<br>[CustomContractFileLayer](../src/components/viewer/CustomContractFileLayer.tsx) | 6 種の座標系リテラルを持つ `as const` オブジェクト。表示設定の選択肢、アップロード時の `pointCloudAttribute`、自前描画の座標系指定 |
 | `BATCH_PROCESSING_STATUS` | [FileListSidebar](../src/components/sidebar/FileListSidebar.tsx)                                                                                                                                                  | PCLOD バッチ処理ステータス（`start` / `inProgress` / `finish` / `failed`）。4 値すべてに日本語ラベルを割り当てている               |
+| `RCDE_CLICK_HANDLED`      | 未使用                                                                                                                                                                                                            | 下記参照                                                                                                                           |
 
 ## 型
 
@@ -110,13 +112,21 @@
 | `ViewerMemoryAlert`             | [WorkspaceProvider](../src/components/workspace/WorkspaceProvider.tsx)                                                                                                                                                                | `onAlert` で受け取ったアラートを保持する state 型                                                                    |
 | `ViewerMemoryAlertLevel`        | [WorkspaceProvider](../src/components/workspace/WorkspaceProvider.tsx)<br>[MemoryPanel](../src/components/inspector/MemoryPanel.tsx)                                                                                                  | `onAlertLevelChange` の state 型と、レベル表示バッジの引数型                                                         |
 | `ViewerFileMemoryEstimate`      | [CustomContractFileLayer](../src/components/viewer/CustomContractFileLayer.tsx)                                                                                                                                                       | `ContractFileView` の `onMemoryEstimateChange` のハンドラ引数型                                                      |
+| `PointCloudMeta`                | [CustomContractFileLayer](../src/components/viewer/CustomContractFileLayer.tsx)                                                                                                                                                       | `getContractFileMetadata` の結果を `ContractFileView` の `meta` へ渡すための型。0.1.5 から SDK が公開している        |
 | `ClientContextType`             | 未使用                                                                                                                                                                                                                                | 下記参照                                                                                                             |
+| `ViewerMemoryThresholdBreach`   | 未使用                                                                                                                                                                                                                                | 下記参照                                                                                                             |
+| `ViewerMemoryObservedBytes`     | 未使用                                                                                                                                                                                                                                | 下記参照                                                                                                             |
+| `ViewerMemoryAlertLevels`       | 未使用                                                                                                                                                                                                                                | 下記参照                                                                                                             |
 
 ## 未使用シンボル
 
-| シンボル            | 未使用の理由                                                                                                                                                                                                                                                          |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ClientContextType` | `useClient()` の戻り値は各コンポーネントで `const { client, project } = useClient()` と分割代入しており、型名を書く箇所がありません。`AppHeader` が受け取るクライアントは Context 由来ではなく自前で `new` したものなので、型注釈は `RCDEClient` の方が実態に合います |
+| シンボル                      | 未使用の理由                                                                                                                                                                                                                                                                                                                      |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ClientContextType`           | `useClient()` の戻り値は各コンポーネントで `const { client, project } = useClient()` と分割代入しており、型名を書く箇所がありません。`AppHeader` が受け取るクライアントは Context 由来ではなく自前で `new` したものなので、型注釈は `RCDEClient` の方が実態に合います                                                             |
+| `ViewerMemoryThresholdBreach` | `onAlert` で受け取る `alert.breaches` の要素の型です。[MemoryPanel](../src/components/inspector/MemoryPanel.tsx) と [WorkspaceProvider](../src/components/workspace/WorkspaceProvider.tsx) で `target` / `level` / `thresholdBytes` / `observedBytes` を読んでいますが、型推論に任せているので型名を書く箇所がありません          |
+| `ViewerMemoryObservedBytes`   | `ViewerMemoryAlert` の `observedBytes` の型です。上と同じく、値は読んでいますが型名を書く箇所がありません                                                                                                                                                                                                                         |
+| `ViewerMemoryAlertLevels`     | 閾値の対象ごとの現在レベルを表す型です。SDK 内部のヒステリシス判定で使うもので、`memoryMonitoring` のどのコールバックの引数にも現れないため、利用側から使う場面がありません                                                                                                                                                       |
+| `RCDE_CLICK_HANDLED`          | `MeasurementHandler` が計測で消費したクリックに付ける印です。`Viewer` の `onObjectClick` / `onContractFileClick` は印の付いたクリックを無視するので、本サンプルのようにクリックを `onObjectClick` で受け取る場合は意識する必要がありません。キャンバスに自前で `click` リスナーを付け、計測中のクリックを除外したいときに使います |
 
 ## `ViewerProps` の全プロパティ
 

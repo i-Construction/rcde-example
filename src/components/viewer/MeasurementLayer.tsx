@@ -30,8 +30,9 @@ export function MeasurementLayer() {
   );
 
   // 計測モードが OFF のときは何も描画しない。
-  // `MeasurementHandler` はマウント中キャンバスの click を stopImmediatePropagation で
-  // 奪うため、置いたままにするとファイル選択（onObjectClick）が動かなくなる。
+  // `MeasurementHandler` はマウント中、キャンバスの click に `RCDE_CLICK_HANDLED` の印を付ける。
+  // `Viewer` は印の付いたクリックを無視するため、置いたままにすると
+  // ファイル選択（onObjectClick / onContractFileClick）が動かなくなる。
   if (!measurementEnabled) {
     return null;
   }

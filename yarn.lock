@@ -433,23 +433,16 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.3.tgz#c2b9d2e374ee62c586d3adbea87199b1d7a7a6ba"
   integrity sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==
 
-"@i-con/frontend-sdk@0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@i-con/frontend-sdk/-/frontend-sdk-0.1.4.tgz#54a2d445e71bc61b9aace37a1c5b91a6eaed360c"
-  integrity sha512-5IppBqNWegxauFG7dk27BRFZlPcgy6rMZOhiOjdg+9DStrdUXO0/Gyc9YwSsTKZETIwaDlsDhPCeaQljxX+D/A==
+"@i-con/frontend-sdk@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@i-con/frontend-sdk/-/frontend-sdk-0.1.5.tgz#8ba1fb7a8b2b255a0033dc9836d9b98148f66cb2"
+  integrity sha512-8WUXVPvdvIQFBD3lHoxbjONjiUr8cxOJ5TnFOcADgl6vKav9Uk/GMOWCIqkx4n4i0LmcMLlzZF0bIvDmnwayWw==
   dependencies:
     "@emotion/react" "^11.14.0"
     "@emotion/styled" "^11.14.0"
-    "@i-con/pcd-viewer" "0.0.27"
     "@mui/material" "^6.1.10"
     chroma-js "^3.1.2"
     js-quadtree "^3.3.6"
-    pngjs "^7.0.0"
-
-"@i-con/pcd-viewer@0.0.27":
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/@i-con/pcd-viewer/-/pcd-viewer-0.0.27.tgz#e83510985b95b8a769aa4c7ccfa97aee7211e03f"
-  integrity sha512-VGmnzTveAo3e59hbIw3ltEhBH303ocRv23DdkWcASS0zA1kDSoLh35WZ8K9YrVyXU25CjySPXDojGc63ID2JZQ==
 
 "@img/colour@^1.0.0":
   version "1.1.0"
@@ -3566,11 +3559,6 @@ picomatch@^4.0.4:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-4.0.7.tgz#6313360034ccb36b3dc61ecbdff78121f90fe21f"
   integrity sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==
-
-pngjs@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-7.0.0.tgz#a8b7446020ebbc6ac739db6c5415a65d17090e26"
-  integrity sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==
 
 possible-typed-array-names@^1.0.0, possible-typed-array-names@^1.1.0:
   version "1.1.0"
